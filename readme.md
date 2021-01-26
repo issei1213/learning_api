@@ -31,3 +31,7 @@ This is the sample repository to test the request and the response of a simple j
 ### OPTIONS
 
 `curl -X OPTIONS "http://localhost:3000/episodes" -v`
+
+
+### 動画教材(ゼロから始めるWeb API入門実践編)
+> https://www.youtube.com/playlist?list=PLX8Rsrpnn3IVW5P1H1s_AOP0EEyMyiRDA
