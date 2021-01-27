@@ -35,5 +35,3 @@ This is the sample repository to test the request and the response of a simple j
 
 ### 動画教材(ゼロから始めるWeb API入門実践編)
 > https://www.youtube.com/playlist?list=PLX8Rsrpnn3IVW5P1H1s_AOP0EEyMyiRDA
-
-test
