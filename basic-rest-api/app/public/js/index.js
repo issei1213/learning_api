@@ -21,6 +21,21 @@ const indexModule = (() => {
       });
       break;
 
+    case "/edit.html":
+      const uid = window.location.search.split("?uid=")[1];
+      document.getElementById("save-btn").addEventListener("click", () => {
+        return usersModule.saveUser(uid);
+      });
+
+      document.getElementById("delete-btn").addEventListener("click", () => {
+        return usersModule.deleteUser(uid);
+      });
+
+      document.getElementById("cancel-btn").addEventListener("click", () => {
+        return (window.location.href = "/");
+      });
+
+      return usersModule.setExistingValue(uid);
     default:
       break;
   }
