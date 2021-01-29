@@ -2,6 +2,32 @@
 const usersModule = (() => {
   const BASE_URL = "http://localhost:3000/api/v1/users";
 
+  const handleError = async (res) => {
+    const resJson = await res.json();
+
+    switch (res.status) {
+      case 200:
+        alert(resJson.message);
+        window.location.href = "/";
+        break;
+      case 201:
+        alert(resJson.message)
+        window.location.href = "/";
+        break;
+      case 400:
+        alert(resJson.error);
+        break;
+      case 404:
+        alert(resJson.error);
+        break;
+      case 500:
+        alert(resJson.error);
+        break;
+      default:
+        alert("何らかのエラーが発生しました");
+    }
+  };
+
   // ヘッダーの設定
   const headers = new Headers();
   headers.set("Content-Type", "application/json");
@@ -48,10 +74,7 @@ const usersModule = (() => {
         body: JSON.stringify(body),
       });
 
-      const resJson = await res.json();
-
-      alert(resJson.message);
-      window.location.href = "/";
+      return handleError(res);
     },
 
     setExistingValue: async (uid) => {
@@ -81,10 +104,7 @@ const usersModule = (() => {
         body: JSON.stringify(body),
       });
 
-      const resJson = await res.json();
-
-      alert(resJson.message);
-      window.location.href = "/";
+      return handleError(res);
     },
 
     deleteUser: async (uid) => {
@@ -98,9 +118,7 @@ const usersModule = (() => {
           headers: headers,
         });
 
-        const resJson = await res.json();
-        alert(resJson.message);
-        window.location.href = "/";
+        return handleError(res);
       }
     },
   };
