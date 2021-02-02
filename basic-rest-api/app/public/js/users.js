@@ -11,7 +11,7 @@ const usersModule = (() => {
         window.location.href = "/";
         break;
       case 201:
-        alert(resJson.message)
+        alert(resJson.message);
         window.location.href = "/";
         break;
       case 400:
@@ -37,8 +37,6 @@ const usersModule = (() => {
       const res = await fetch(BASE_URL);
       const users = await res.json();
 
-      console.log("users", users);
-
       for (let i = 0; i < users.length; i++) {
         const user = users[i];
         const body = `<tr>
@@ -49,7 +47,6 @@ const usersModule = (() => {
                         <td>${user.created_at}</td>
                         <td>${user.updated_at}</td>
                         <td><a href="edit.html?uid=${user.id}">編集</a></td>
-
                       </tr>`;
 
         document.getElementById("users-list").insertAdjacentHTML("beforeend", body);

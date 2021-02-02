@@ -98,7 +98,7 @@ app.put("/api/v1/users/:id", async (req, res) => {
 
         try {
           await run(`UPDATE users SET name="${name}", profile="${profile}", date_of_birth="${dateOfBirth}" WHERE id=${id}`, db);
-          res.status(200).send({message: "ユーザー情報を更新しました。"});
+          res.status(200).send({ message: "ユーザー情報を更新しました。" });
         } catch (e) {
           res.status(500).send({ error: e });
         }
@@ -142,6 +142,24 @@ const run = async (sql, db) => {
     });
   });
 };
+
+// Get following users
+app.get("/api/v1/users/:id/following", (req, res) => {
+  // Connect database
+  const db = new sqlite3.Database(dbPath);
+  const id = req.params.id;
+
+  db.all(`SELECT * FROM following LEFT JOIN users ON following.followed_id = users.id WHERE following_id = ${id};`, (err, rows) => {
+    if (!rows) {
+      res.status(404).send({ error: "Not Found" });
+    } else {
+      res.status(202).json(rows);
+    }
+    res.json(rows);
+  });
+
+  db.close();
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port);
